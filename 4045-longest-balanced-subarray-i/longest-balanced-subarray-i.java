@@ -2,15 +2,7 @@ class Solution {
     public int longestBalanced(int[] nums) {
         int n = nums.length;
         int ans=0;
-        // int[][] arr = new int[n][2];
-        // if(nums[0]%2==0) arr[0][0]=1;
-        // else arr[0][1]=1;
-        // for(int i=1; i<n; i++){
-        //     if(nums[i]%2==0){
-        //         arr[i][0]=arr[i-1][0]+1;
-        //     }
-        //     else arr[i][1]=arr[i-1][1]+1;
-        // }
+        
         for(int i=0; i<n; i++){
             Set<Integer> even = new HashSet<>();
             Set<Integer> odd = new HashSet<>();
