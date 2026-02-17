@@ -1,27 +1,16 @@
 class Solution {
     public int prefixConnected(String[] words, int k) {
         int ans = 0;
-        int n = words.length;
-        boolean[] added = new boolean[n];
-        for(int i=0; i<n; i++){
-            if(words[i].length()<k) continue;
-            String sub = words[i].substring(0, k);
-            if(!added[i]){
-                boolean found = false;
-                added[i]=true;
-                for(int j=i+1; j<n; j++){
-                    if(words[j].length()<k) continue;
-                    String sub1 = words[j].substring(0, k);
-                    if(sub.equals(sub1)){
-                        added[j]=true;
-                        found=true;
-                    }
-                }
-                if(found){
-                    found=false;
-                    ans++;
-                }
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for(String word: words){
+            if(word.length()>=k){
+                String sub = word.substring(0, k);
+                map.put(sub, map.getOrDefault(sub, 0)+1);
             }
+        }
+        for(int val: map.values()){
+            if(val>=2) ans++;
         }
         return ans;
     }
