@@ -16,7 +16,7 @@ class Solution {
         }
         backTrack(st+1, nums, path);
         if(f && path.size()!=0) path.remove(path.size()-1);
-        if(f) backTrack(st+1, nums, path);
+        backTrack(st+1, nums, path);
         
     }
     public List<List<Integer>> findSubsequences(int[] nums) {
