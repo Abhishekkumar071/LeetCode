@@ -15,8 +15,8 @@ class Solution {
             max = Math.max(max, zero+(tot-one));
             if(nums[i]==0) zero++;
             else one++;
-            max = Math.max(max, zero+(tot-one));
         }
+        max = Math.max(max, zero+(tot-one));
         if(max==one) ans.add(0);
         zero=0;
         one=0;
