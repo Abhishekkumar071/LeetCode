@@ -12,7 +12,6 @@ class Solution {
             else{
                 ans += val/3;
                 val = (val+1/3);
-                System.out.println(val);
                 if(val>0)ans +=1;
             }
         }
