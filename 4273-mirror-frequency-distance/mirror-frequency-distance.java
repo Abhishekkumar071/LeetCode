@@ -1,47 +1,23 @@
 class Solution {
     public int mirrorFrequency(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
+        int[] freq = new int[123];
 
         for(char ch: s.toCharArray()){
-            map.put(ch, map.getOrDefault(ch, 0)+1);
+            freq[ch]++;
         }
         int ans = 0;
+        boolean[] vis = new boolean[123];
+
         for(char ch: s.toCharArray()){
-            if(Character.isDigit(ch)) {
-                char rev = (char)(9-(ch-'0')+'0');
-
-                if(map.containsKey(ch) && map.containsKey(rev)){
-                    ans += Math.abs(map.get(ch)-map.get(rev));
-                    map.remove(ch);
-                    map.remove(rev);
-                }
-                else if(map.containsKey(ch)){
-                    ans += map.get(ch);
-                    map.remove(ch);
-                }
-                else if(map.containsKey(rev)){
-                    ans += map.get(rev);
-                    map.remove(rev);
-                }
-            }
-            else{
-                char rev = (char)(25-(ch-'a')+'a');
-
-                if(map.containsKey(ch) && map.containsKey(rev)){
-                    ans += Math.abs(map.get(ch)-map.get(rev));
-                    map.remove(ch);
-                    map.remove(rev);
-                }
-                else if(map.containsKey(ch)){
-                    ans += map.get(ch);
-                    map.remove(ch);
-                }
-                else if(map.containsKey(rev)){
-                    ans += map.get(rev);
-                    map.remove(rev);
-                }
-            }
+            if(vis[ch]) continue;
+            char m = mirror(ch);
+            ans += Math.abs(freq[ch]-freq[m]);
+            vis[ch]=true; vis[m]=true;
         }
         return ans;
+    }
+    private char mirror(char ch){
+        if(ch>='a' && ch<='z') return (char)('a'+('z'-ch));
+        return (char)('0'+('9'-ch));
     }
 }
