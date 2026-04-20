@@ -4,7 +4,7 @@ class Solution {
         int n2 = nums2.length;
         int max = 0; 
         for (int i = 0; i < n1; i++) {
-            if (i >= n2 || nums1[i] > nums2[i]) continue;
+            // if (i >= n2 || nums1[i] > nums2[i]) continue;
 
             int target = nums1[i];
             int l = i, r = n2 - 1;
