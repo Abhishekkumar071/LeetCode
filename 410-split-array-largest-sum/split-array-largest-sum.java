@@ -1,6 +1,4 @@
 class Solution {
-  
-
     private boolean cheack(int[] arr, int k, int i1){
         int s=1;
         int sum=0;
@@ -16,15 +14,17 @@ class Solution {
         return (s<=k);
     }
     public int splitArray(int[] arr, int k) {
-        // code here
         int n = arr.length;
         if(n<k) return -1;
         
-        int min = Arrays.stream(arr).max().getAsInt();
-        int max = Arrays.stream(arr).sum();
+        int min =Integer.MIN_VALUE;
+        int max = 0;
+        for(int ele: arr){
+            if(min<ele) min=ele;
+            max+=ele;
+        }
         
         int res = -1;
-        
         while(min<=max){
             int mid = ((max+min)/2);
             if(cheack(arr, k, mid)){
