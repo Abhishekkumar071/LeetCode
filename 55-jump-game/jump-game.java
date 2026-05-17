@@ -1,16 +1,10 @@
 class Solution {
-    Boolean[] memo;
     public boolean canJump(int[] nums) {
-        memo = new Boolean[nums.length];
-        return solve(nums, 0);
-    }
-    public boolean solve(int[] nums, int idx){
-        if(idx>=nums.length-1) return true;
-        if(memo[idx]!=null) return memo[idx];
-        int maxJump = nums[idx];
-        for(int step=1; step<=maxJump; step++){
-            if(solve(nums, idx+step)) return memo[idx] = true;
+        int reachable = 0;
+        for(int i=0; i<nums.length; i++){
+            if(i>reachable) return false;
+            reachable = Math.max(reachable, nums[i]+i);
         }
-        return memo[idx]=false;
+        return true;
     }
 }
