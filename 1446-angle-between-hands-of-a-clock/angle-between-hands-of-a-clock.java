@@ -1,9 +1,9 @@
 class Solution {
     public double angleClock(int hour, int minutes) {
-        double h = (double)((hour*60)+minutes)/2.0;
-        double m = minutes*6;
-        double sum=Math.abs(h-m);
-        System.out.println(h+" "+m);
-        return Math.min(sum, 360-sum);
+        double hourAngle = (hour*60+minutes)*0.5;
+        double minutesAngle =  minutes*6;
+        double angle = Math.abs(hourAngle - minutesAngle);
+        return Math.min(angle,360-angle);
+
     }
 }
