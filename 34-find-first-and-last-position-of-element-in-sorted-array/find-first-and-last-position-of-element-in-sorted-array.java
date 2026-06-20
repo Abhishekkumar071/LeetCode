@@ -1,19 +1,35 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int n  = nums.length;
-        int l=0;
+        int first = findL(nums, target);
+        if(first==-1) return new int[]{-1, -1};
+        int last = findR(nums, target);
+        return new int[]{first, last};
+    }
+    private int findL(int[] arr, int t){
+        int n = arr.length;
+        int f=-1;
+        int l=0; 
         int r=n-1;
-        int found = -1;
-        while(l<r){
+        while(l<=r){
             int mid = l+(r-l)/2;
-            if(nums[mid]==target){
-                found=mid;
-            }
-            if(nums[mid]<target) l=mid+1;
-            else r=mid;
+            if(arr[mid]>=t) r=mid-1;
+            else l=mid+1;
+            if(arr[mid]==t) f=mid;
         }
-        while(r+1<n && nums[r]==nums[r+1])r++;
-        if(found!=-1 || (l<n&&nums[l]==target&&nums[r]==target)) return new int[]{l,r};
-        else return new int[]{-1, -1};
+        return f;
+    }
+
+    private int findR(int[] arr, int t){
+        int n = arr.length;
+        int f=-1;
+        int l=0; 
+        int r=n-1;
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            if(arr[mid]<=t) l=mid+1;
+            else r=mid-1;
+            if(arr[mid]==t) f=mid;
+        }
+        return f;
     }
 }
