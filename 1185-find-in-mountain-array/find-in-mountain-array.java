@@ -17,15 +17,13 @@ class Solution {
             if(arr.get(mid)<arr.get(mid+1)) l=mid+1;
             else r=mid;
         }
-        // System.out.println(l+" "+r);
         int top=r;
         l=0;
         while(l!=r){
             int mid = l+(r-l)/2;
             int a = arr.get(mid);
-            // System.out.print(mid);
             if(a==target) return mid;
-            else if(a<target) l=mid+1;
+            else if(a<target) l=mid+1; //ascen.
             else if(a>target) r=mid;
         }
         if(arr.get(l) == target) return l;
@@ -33,13 +31,12 @@ class Solution {
         while(l != r){
             int mid = l + (r - l) / 2;
             int a = arr.get(mid);
-        
             if(a == target) return mid;
-            else if(a > target) l = mid + 1; // descending
-            else r = mid;                    // descending
+            else if(a > target) l = mid + 1; //desc
+            else r = mid;                    
         }
+        if(l < n && arr.get(l) == target) return l;
 
-if(l < n && arr.get(l) == target) return l;
         return -1;
     }
 }
