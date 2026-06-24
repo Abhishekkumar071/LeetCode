@@ -15,20 +15,19 @@
  */
 class Solution {
     int mx=0;
-    int find(int v, TreeNode root){
+    int find(TreeNode root){
         if(root==null) return 0;
-        if(root.val!=v) return 0;
-        int left = find(v, root.left);
-        int right = find(v,root.right);
-        mx = Math.max(mx, 1+left+right);
-        return 1+Math.max(left, right);
+        int left = find(root.left);
+        int right = find(root.right);
+
+        int l=0; int r=0;
+        if(root.left!=null && root.left.val==root.val)l=left+1 ;
+        if(root.right!=null && root.right.val==root.val)r=right+1;
+        mx = Math.max(mx, l+r);
+        return Math.max(l, r);
     }
     public int longestUnivaluePath(TreeNode root) {
-        if(root==null) return 0;
-        int curr = find(root.val, root);
-        mx = Math.max(mx, curr);
-        longestUnivaluePath(root.left);
-        longestUnivaluePath(root.right);
-        return Math.max(0,mx-1);
+        find(root);
+        return mx;
     }
 }
