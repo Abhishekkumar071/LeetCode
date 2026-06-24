@@ -14,27 +14,22 @@
  * }
  */
 class Solution {
+    int countAll(TreeNode root, int t, HashMap<Long, Integer> map, long sum){
+        if(root==null) return 0;
+        sum+=root.val;
+        int count=map.getOrDefault(sum-t, 0);
+        map.put(sum, map.getOrDefault(sum, 0)+1);
+      
+        count+=countAll(root.left, t,map,  sum);
+        count+=countAll(root.right, t, map, sum);
 
-    int countAll(TreeNode root, long target) {
-        if (root == null) return 0;
-
-        int count = 0;
-
-        if (root.val == target) {
-            count++;
-        }
-
-        count += countAll(root.left, target - root.val);
-        count += countAll(root.right, target - root.val);
-
+         map.put(sum, map.get(sum)-1);
+        if(map.get(sum)==0) map.remove(sum);
         return count;
     }
-
-    public int pathSum(TreeNode root, int targetSum) {
-        if (root == null) return 0;
-
-        return countAll(root, targetSum)
-             + pathSum(root.left, targetSum)
-             + pathSum(root.right, targetSum);
+    public int pathSum(TreeNode root, int t) {
+        HashMap<Long, Integer> map = new HashMap<>();
+        map.put(0L, 1);
+        return countAll(root, t, map, 0);
     }
 }
