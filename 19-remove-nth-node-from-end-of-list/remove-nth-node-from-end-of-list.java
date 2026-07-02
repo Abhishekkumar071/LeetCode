@@ -19,7 +19,7 @@ class Solution {
         int e=len-n;
         if(e==0) return head.next;
         temp=head;
-        System.out.println(e);
+        // System.out.println(e);
         while(e>1){
             temp=temp.next;
             e--;
