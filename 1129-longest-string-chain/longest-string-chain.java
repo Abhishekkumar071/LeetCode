@@ -11,28 +11,18 @@ class Solution {
 
         return i==a.length();
     }
-    int[] memo;
-    int solve(int idx, String[] words){
-        if(idx>=words.length) return 1;
-        if(memo[idx]!=-1) return memo[idx];
-        int ans = 1;
-        for(int i=idx+1; i<words.length; i++){
-            if(pred(words[idx], words[i])) ans = Math.max(ans, 1+solve(i, words));
-        }
-        // int not = solve(idx+1, words);
-        return memo[idx]=ans;
-    }
     public int longestStrChain(String[] words) {
         Arrays.sort(words, (a,b)->a.length()-b.length());
-        memo = new int[words.length];
-        Arrays.fill(memo, -1);
-        
-        int ans = 1;
-
-        for (int i = 0; i < words.length; i++) {
-            ans = Math.max(ans, solve(i, words));
+        int ans = 0;
+        int n = words.length;
+        int[] dp = new int[n];
+        for(int i=n-1; i>=0; i--){
+            dp[i]=1;
+            for(int j=i+1; j<n; j++){
+                if(pred(words[i], words[j])) dp[i]=Math.max(dp[i], dp[j]+1);
+            }
+            ans=Math.max(ans, dp[i]);
         }
-    
         return ans;
     }
 }
