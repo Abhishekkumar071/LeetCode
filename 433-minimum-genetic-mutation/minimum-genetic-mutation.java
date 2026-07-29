@@ -20,6 +20,7 @@ class Solution {
             for(int i=0; i<sArr.length; i++){
                 char prev = sArr[i];
                 for(char ch: arr){
+                    if(ch==prev) continue;
                     sArr[i]=ch;
                     String nn = new String(sArr);
                     // System.out.println(nn);
