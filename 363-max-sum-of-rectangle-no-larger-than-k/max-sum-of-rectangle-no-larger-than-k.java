@@ -19,9 +19,9 @@ class Solution {
                            pref[i-1][j-1];
             }
         }
-        for(int[] a: pref){
-            System.out.println(Arrays.toString(a));
-        }
+        // for(int[] a: pref){
+        //     System.out.println(Arrays.toString(a));
+        // }
         for(int r1=0; r1<m; r1++){
             for(int c1=0; c1<n; c1++){
                 for(int r2=r1; r2<m; r2++){
